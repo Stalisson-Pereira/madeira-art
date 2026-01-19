@@ -8,8 +8,8 @@ import { cn } from '@/lib/utils'
 function LogoMark() {
   return (
     <div className="flex items-center gap-2">
-      <div className="grid h-9 w-9 place-items-center rounded-xl bg-charcoal-900 text-sand-50 shadow-soft">
-        <span className="font-serif text-sm">MA</span>
+      <div className="grid h-9 w-9 place-items-center rounded-xl bg-sand-50 shadow-soft ring-1 ring-sand-200">
+        <img src="/favicon.svg" alt="" className="h-7 w-7" />
       </div>
       <div className="leading-tight">
         <div className="font-serif text-base font-semibold">Madeira Art</div>

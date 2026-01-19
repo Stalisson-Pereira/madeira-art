@@ -1,0 +1,14 @@
+{
+  "name": "Madeira Art",
+  "short_name": "Madeira Art",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#B07A3A",
+  "background_color": "#F7F3EE",
+  "display": "standalone"
+}
