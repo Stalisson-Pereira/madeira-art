@@ -12,7 +12,25 @@ function LogoMark() {
         <img src="/favicon.svg" alt="Madeira Art" className="h-7 w-7" />
       </div>
       <div className="leading-tight">
-        <div className="font-serif text-base font-semibold">Madeira Art</div>
+        <div className="flex items-center gap-2">
+          <span className="text-wood-700">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+              className="h-4 w-4 relative top-[1px]"
+            >
+              <path d="M8 3.25c-2.35 0-4.25 1.95-4.25 4.55 0 2.85 1.9 5.05 4.25 5.05S12.25 10.65 12.25 7.8C12.25 5.2 10.35 3.25 8 3.25Z" />
+              <path d="M9.6 12.35c.25 4.55 2.9 7.85 9.4 9.4" />
+              <path d="M6.65 6.55c.55-.45 1.2-.68 1.95-.68" />
+            </svg>
+          </span>
+          <span className="font-semibold">Madeira Art</span>
+        </div>
         <div className="text-xs text-charcoal-700/80">Artesanato em madeira</div>
       </div>
     </div>

@@ -63,7 +63,7 @@ describe('Produtos', () => {
 
     const n1 = screen.getByText('Colher de Pau - N1')
     const n2 = screen.getByText('Colher de Pau - N2')
-    const n3 = screen.getByText('Colher N3')
+    const n3 = screen.getByText('Colher de pau - N3')
     const n4 = screen.getByText('Colher de Pau - N4')
     const n5 = screen.getByText('Colher de Pau - N5')
 

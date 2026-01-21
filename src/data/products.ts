@@ -51,10 +51,11 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'p2',
-    name: 'Colher N3',
+    name: 'Colher de pau - N3',
     category: 'colheres',
     slug: 'colher-de-pau-media-30cm',
-    shortDescription: 'Versátil, perfeita para panelas do dia a dia.',
+    shortDescription:
+      'Colher de pau feita à mão, com bordas suaves e cabo confortável. Acabamento pensado para contato com alimentos.',
     description:
       'Equilíbrio ideal entre alcance e controle. Design clássico com toque contemporâneo, pronta para uso em preparos quentes e frios.',
     priceFrom: 1.7,
@@ -80,7 +81,7 @@ export const PRODUCTS: Product[] = [
     name: 'Colher de Pau - N1',
     category: 'colheres',
     slug: 'colher-de-pau-grande-35cm',
-    shortDescription: 'Para panelas maiores e receitas de família.',
+    shortDescription: 'Ideal para mexer cafés, molhos e porções pequenas.',
     description:
       'Cabo mais longo para segurança e conforto em preparos volumosos. Peça robusta, com acabamento suave e pegada firme.',
     priceFrom: 1.3,
@@ -106,7 +107,8 @@ export const PRODUCTS: Product[] = [
     name: 'Colher de Pau - N4',
     category: 'colheres',
     slug: 'colher-de-pau-n4',
-    shortDescription: 'Modelo N4 feito à mão com acabamento suave.',
+    shortDescription:
+      'Cabo mais longo para segurança e conforto em preparos volumosos. Peça robusta, com acabamento suave e pegada firme.',
     description:
       'Colher de pau feita à mão, com bordas suaves e cabo confortável. Acabamento pensado para contato com alimentos.',
     priceFrom: 2.3,
@@ -132,7 +134,8 @@ export const PRODUCTS: Product[] = [
     name: 'Colher de Pau - N5',
     category: 'colheres',
     slug: 'colher-de-pau-n5',
-    shortDescription: 'Modelo N5 feito à mão com acabamento premium.',
+    shortDescription:
+      'Cabo mais longo para segurança e conforto em preparos volumosos. Peça robusta, com acabamento suave e pegada firme.',
     description:
       'Colher de pau feita à mão, com bordas suaves e cabo confortável. Acabamento pensado para contato com alimentos.',
     priceFrom: 4.3,
