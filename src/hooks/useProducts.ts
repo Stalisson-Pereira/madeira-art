@@ -129,6 +129,14 @@ export function useProducts(query: ProductsQuery) {
 
     let list = items
 
+    const getColherNumber = (p: Product) => {
+      if (p.category !== 'colheres') return null
+      const match = p.name.match(/\bN\s*(\d+)\b/i)
+      if (!match) return null
+      const n = Number(match[1])
+      return Number.isFinite(n) ? n : null
+    }
+
     if (query.category !== 'all') {
       list = list.filter((p) => p.category === query.category)
     }
@@ -152,7 +160,18 @@ export function useProducts(query: ProductsQuery) {
 
     const sorted = [...list]
     sorted.sort((a, b) => {
-      if (query.sort === 'recent') return b.createdAt.localeCompare(a.createdAt)
+      if (query.sort === 'recent') {
+        const aColher = getColherNumber(a)
+        const bColher = getColherNumber(b)
+
+        if (aColher != null || bColher != null) {
+          if (aColher != null && bColher != null) return aColher - bColher
+          if (aColher != null) return -1
+          if (bColher != null) return 1
+        }
+
+        return b.createdAt.localeCompare(a.createdAt)
+      }
       if (query.sort === 'priceAsc') return (a.priceFrom ?? 0) - (b.priceFrom ?? 0)
       if (query.sort === 'priceDesc') return (b.priceFrom ?? 0) - (a.priceFrom ?? 0)
       return 0

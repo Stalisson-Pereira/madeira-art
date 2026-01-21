@@ -37,7 +37,9 @@ function CategoryCard({
 }
 
 export default function Home() {
-  const featured = PRODUCTS.slice(0, 4)
+  const colher = PRODUCTS.find((p) => p.category === 'colheres') ?? null
+  const tabua = PRODUCTS.find((p) => p.category === 'tabuas') ?? null
+  const personalizado = PRODUCTS.find((p) => p.category === 'personalizados') ?? null
 
   return (
     <div>
@@ -98,7 +100,7 @@ export default function Home() {
             <div className="md:col-span-6">
               <div className="relative overflow-hidden rounded-3xl border border-sand-200 bg-sand-50 shadow-soft">
                 <img
-                  src={featured[3]?.images[0]?.url}
+                  src={colher?.images[0]?.url ?? tabua?.images[0]?.url ?? personalizado?.images[0]?.url}
                   alt="Textura e artesanato em madeira"
                   className="aspect-[4/3] w-full object-cover"
                 />
@@ -130,20 +132,20 @@ export default function Home() {
           <CategoryCard
             title="Colheres"
             description="Tamanhos variados para cada tipo de preparo."
-            to="/produtos"
-            imageUrl={featured[0]?.images[0]?.url}
+            to="/produtos?categoria=colheres"
+            imageUrl={colher?.images[0]?.url ?? tabua?.images[0]?.url ?? personalizado?.images[0]?.url ?? ''}
           />
           <CategoryCard
             title="Tábuas"
             description="Cortes, preparo e servir com presença na mesa."
-            to="/produtos"
-            imageUrl={featured[3]?.images[0]?.url}
+            to="/produtos?categoria=tabuas"
+            imageUrl={tabua?.images[0]?.url ?? colher?.images[0]?.url ?? personalizado?.images[0]?.url ?? ''}
           />
           <CategoryCard
             title="Personalizados"
             description="Gravação, medidas e desenho sob medida."
-            to="/produtos"
-            imageUrl={featured[5]?.images[0]?.url ?? featured[2]?.images[0]?.url}
+            to="/produtos?categoria=personalizados"
+            imageUrl={personalizado?.images[0]?.url ?? colher?.images[0]?.url ?? tabua?.images[0]?.url ?? ''}
           />
         </div>
       </Container>

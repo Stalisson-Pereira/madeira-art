@@ -10,7 +10,10 @@ export default function SiteFooter() {
       <Container className="py-10">
         <div className="grid gap-8 md:grid-cols-3">
           <div>
-            <div className="font-serif text-lg font-semibold">Madeira Art</div>
+            <div className="flex items-center gap-2 font-serif text-lg font-semibold">
+              <img src="/favicon.svg" alt="Madeira Art" className="h-6 w-6" />
+              <span>Madeira Art</span>
+            </div>
             <p className="mt-2 text-sm text-charcoal-700/80">
               Colheres, tábuas e peças personalizadas em madeira. Feito à mão com cuidado e acabamento premium.
             </p>
@@ -36,15 +39,19 @@ export default function SiteFooter() {
             <div className="mt-3 flex flex-col gap-2 text-sm text-charcoal-700/80">
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-wood-600" />
-                <span>(00) 00000-0000</span>
+                <span>(73) 98875-5391</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-wood-600" />
-                <span>contato@madeiraart.com</span>
+                <Mail strokeWidth={1.75} className="h-4 w-4 shrink-0 text-wood-600" />
+                <span>madeiraart@madeiraart.com.br</span>
               </div>
               <div className="flex items-center gap-2">
                 <Instagram className="h-4 w-4 text-wood-600" />
                 <span>@madeiraart</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="font-medium text-wood-600">CNPJ:</span>
+                <span>41.982.543/0001-39</span>
               </div>
             </div>
           </div>

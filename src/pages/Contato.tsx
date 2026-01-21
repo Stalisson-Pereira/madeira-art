@@ -1,4 +1,4 @@
-import { CheckCircle2, Mail, MessageCircle, Phone, Send } from 'lucide-react'
+import { CheckCircle2, Mail, Phone, Send } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import Container from '@/components/ui/Container'
@@ -6,14 +6,50 @@ import Input from '@/components/ui/Input'
 import Select from '@/components/ui/Select'
 import Textarea from '@/components/ui/Textarea'
 import Button from '@/components/ui/Button'
+import WhatsAppIcon from '@/components/icons/WhatsAppIcon'
 import { PRODUCTS } from '@/data/products'
 import { getSupabaseClient } from '@/lib/supabaseClient'
 
 type Channel = 'whatsapp' | 'email' | 'telefone'
 
+const BUSINESS_WHATSAPP_E164 = '5573988755391'
+const BUSINESS_PHONE_TEL = '+5573988755391'
+const BUSINESS_PHONE_DISPLAY = '(73) 98875-5391'
+const BUSINESS_EMAIL = 'madeiraart@madeiart.com.br'
+
 function isValidEmail(value: string) {
   if (!value) return true
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+}
+
+function buildContactBody({
+  name,
+  phone,
+  email,
+  productName,
+  message,
+}: {
+  name: string
+  phone: string
+  email: string
+  productName?: string
+  message: string
+}) {
+  const parts: string[] = ['Olá! Gostaria de um orçamento.', '']
+  parts.push(`Nome: ${name}`)
+  if (phone) parts.push(`Telefone/WhatsApp: ${phone}`)
+  if (email) parts.push(`E-mail: ${email}`)
+  if (productName) parts.push(`Produto: ${productName}`)
+  parts.push('', 'Mensagem:', message)
+  return parts.join('\n')
+}
+
+function buildWhatsAppUrl(text: string) {
+  return `https://wa.me/${BUSINESS_WHATSAPP_E164}?text=${encodeURIComponent(text)}`
+}
+
+function buildMailtoUrl(subject: string, body: string) {
+  return `mailto:${BUSINESS_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
 }
 
 export default function Contato() {
@@ -85,13 +121,13 @@ export default function Contato() {
 
               <div className="mt-6 grid gap-3">
                 <a
-                  href="https://wa.me/5500000000000"
+                  href={`https://wa.me/${BUSINESS_WHATSAPP_E164}`}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex"
                 >
                   <Button className="w-full" size="lg">
-                    <MessageCircle className="h-4 w-4" />
+                    <WhatsAppIcon className="h-4 w-4" />
                     Chamar no WhatsApp
                   </Button>
                 </a>
@@ -99,11 +135,11 @@ export default function Contato() {
                 <div className="grid gap-2 rounded-xl border border-sand-200 bg-sand-50 p-4 text-sm text-charcoal-700/80">
                   <div className="flex items-center gap-2">
                     <Phone className="h-4 w-4 text-wood-600" />
-                    <span>(00) 00000-0000</span>
+                    <span>{BUSINESS_PHONE_DISPLAY}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Mail className="h-4 w-4 text-wood-600" />
-                    <span>contato@madeiraart.com</span>
+                    <span>{BUSINESS_EMAIL}</span>
                   </div>
                 </div>
               </div>
@@ -150,6 +186,26 @@ export default function Contato() {
                   onSubmit={async (e) => {
                     e.preventDefault()
                     if (!canSubmit) return
+
+                    const trimmedName = name.trim()
+                    const trimmedEmail = email.trim()
+                    const trimmedPhone = phone.trim()
+                    const trimmedMessage = message.trim()
+                    const productName = selectedProduct?.name ?? undefined
+
+                    const body = buildContactBody({
+                      name: trimmedName,
+                      phone: trimmedPhone,
+                      email: trimmedEmail,
+                      productName,
+                      message: trimmedMessage,
+                    })
+
+                    const subject = productName ? `Orçamento — ${productName}` : 'Orçamento — Madeira Art'
+
+                    const whatsappPopup =
+                      channel === 'whatsapp' ? window.open('about:blank', '_blank', 'noopener,noreferrer') : null
+
                     setSubmitting(true)
                     setError(null)
                     try {
@@ -157,12 +213,12 @@ export default function Contato() {
 
                       if (supabase) {
                         const { error: insertError } = await supabase.from('contact_messages').insert({
-                          name: name.trim(),
-                          email: email.trim() ? email.trim() : null,
-                          phone: phone.trim() ? phone.trim() : null,
+                          name: trimmedName,
+                          email: trimmedEmail ? trimmedEmail : null,
+                          phone: trimmedPhone ? trimmedPhone : null,
                           preferred_channel: channel,
                           product_slug: productSlug.trim() ? productSlug.trim() : null,
-                          message: message.trim(),
+                          message: trimmedMessage,
                         })
 
                         if (insertError) throw insertError
@@ -171,8 +227,34 @@ export default function Contato() {
                       }
 
                       setSent(true)
+
+                      if (channel === 'whatsapp') {
+                        const url = buildWhatsAppUrl(body)
+                        if (whatsappPopup) {
+                          try {
+                            whatsappPopup.location.href = url
+                            whatsappPopup.focus()
+                          } catch {
+                            window.location.href = url
+                          }
+                        } else {
+                          window.location.href = url
+                        }
+                      } else if (channel === 'email') {
+                        window.location.href = buildMailtoUrl(subject, body)
+                      } else {
+                        try {
+                          await navigator.clipboard.writeText(body)
+                        } catch {}
+                        window.location.href = `tel:${BUSINESS_PHONE_TEL}`
+                      }
                     } catch {
                       setError('Não foi possível enviar agora. Tente novamente.')
+                      if (whatsappPopup) {
+                        try {
+                          whatsappPopup.close()
+                        } catch {}
+                      }
                     } finally {
                       setSubmitting(false)
                     }

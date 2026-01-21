@@ -108,10 +108,6 @@ export default function ProductQuickView({
                 <div className="text-sm text-charcoal-700/80">{product.description}</div>
                 <div className="grid gap-1 text-sm">
                   <div className="flex justify-between gap-4">
-                    <span className="text-charcoal-700/80">Madeira</span>
-                    <span className="font-medium text-charcoal-900">{product.woodType ?? 'A definir'}</span>
-                  </div>
-                  <div className="flex justify-between gap-4">
                     <span className="text-charcoal-700/80">Preço</span>
                     <span className="font-medium text-charcoal-900">
                       {product.priceOnRequest

@@ -25,13 +25,13 @@ const baseStyle =
 export const PRODUCTS: Product[] = [
   {
     id: 'p1',
-    name: 'Colher de Pau — Pequena (25 cm)',
+    name: 'Colher de Pau - N2',
     category: 'colheres',
     slug: 'colher-de-pau-pequena-25cm',
     shortDescription: 'Ideal para mexer cafés, molhos e porções pequenas.',
     description:
       'Colher de pau feita à mão, com bordas suaves e cabo ergonômico. Ótima para uso diário e também para presentear. Acabamento pensado para contato com alimentos.',
-    priceFrom: 18,
+    priceFrom: 1.6,
     priceOnRequest: false,
     woodType: 'Madeira de reflorestamento',
     finish: 'Lixamento fino + óleo mineral (food-safe)',
@@ -51,13 +51,13 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'p2',
-    name: 'Colher de Pau — Média (30 cm)',
+    name: 'Colher N3',
     category: 'colheres',
     slug: 'colher-de-pau-media-30cm',
     shortDescription: 'Versátil, perfeita para panelas do dia a dia.',
     description:
       'Equilíbrio ideal entre alcance e controle. Design clássico com toque contemporâneo, pronta para uso em preparos quentes e frios.',
-    priceFrom: 24,
+    priceFrom: 1.7,
     priceOnRequest: false,
     woodType: 'Tauari',
     finish: 'Óleo vegetal (food-safe)',
@@ -77,17 +77,17 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'p3',
-    name: 'Colher de Pau — Grande (35 cm)',
+    name: 'Colher de Pau - N1',
     category: 'colheres',
     slug: 'colher-de-pau-grande-35cm',
     shortDescription: 'Para panelas maiores e receitas de família.',
     description:
       'Cabo mais longo para segurança e conforto em preparos volumosos. Peça robusta, com acabamento suave e pegada firme.',
-    priceFrom: 29,
+    priceFrom: 1.3,
     priceOnRequest: false,
     woodType: 'Freijó',
     finish: 'Óleo mineral (food-safe)',
-    dimensions: '35 cm (aprox.)',
+    dimensions: '...',
     available: true,
     images: [
       {
@@ -100,6 +100,58 @@ export const PRODUCTS: Product[] = [
       },
     ],
     createdAt: '2026-01-05T12:00:00.000Z',
+  },
+  {
+    id: 'p7',
+    name: 'Colher de Pau - N4',
+    category: 'colheres',
+    slug: 'colher-de-pau-n4',
+    shortDescription: 'Modelo N4 feito à mão com acabamento suave.',
+    description:
+      'Colher de pau feita à mão, com bordas suaves e cabo confortável. Acabamento pensado para contato com alimentos.',
+    priceFrom: 2.3,
+    priceOnRequest: false,
+    woodType: 'Madeira de reflorestamento',
+    finish: 'Lixamento fino + óleo mineral (food-safe)',
+    dimensions: '...',
+    available: true,
+    images: [
+      {
+        url: makeAiImageUrl(`handcrafted small wooden spoon, 25cm, ${baseStyle}`, 'landscape_4_3'),
+        alt: 'Colher de pau artesanal',
+      },
+      {
+        url: makeAiImageUrl(`close-up of wooden spoon handle grain detail, ${baseStyle}`, 'landscape_4_3'),
+        alt: 'Detalhe do cabo da colher de pau',
+      },
+    ],
+    createdAt: '2026-01-12T12:00:00.000Z',
+  },
+  {
+    id: 'p8',
+    name: 'Colher de Pau - N5',
+    category: 'colheres',
+    slug: 'colher-de-pau-n5',
+    shortDescription: 'Modelo N5 feito à mão com acabamento premium.',
+    description:
+      'Colher de pau feita à mão, com bordas suaves e cabo confortável. Acabamento pensado para contato com alimentos.',
+    priceFrom: 4.3,
+    priceOnRequest: false,
+    woodType: 'Madeira de reflorestamento',
+    finish: 'Lixamento fino + óleo mineral (food-safe)',
+    dimensions: '...',
+    available: true,
+    images: [
+      {
+        url: makeAiImageUrl(`handcrafted small wooden spoon, 25cm, ${baseStyle}`, 'landscape_4_3'),
+        alt: 'Colher de pau artesanal',
+      },
+      {
+        url: makeAiImageUrl(`close-up of wooden spoon handle grain detail, ${baseStyle}`, 'landscape_4_3'),
+        alt: 'Detalhe do cabo da colher de pau',
+      },
+    ],
+    createdAt: '2026-01-13T12:00:00.000Z',
   },
   {
     id: 'p4',

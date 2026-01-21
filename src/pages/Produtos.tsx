@@ -1,5 +1,6 @@
 import { Search, SlidersHorizontal } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import Container from '@/components/ui/Container'
 import Input from '@/components/ui/Input'
 import Select from '@/components/ui/Select'
@@ -13,6 +14,7 @@ type Sort = 'recent' | 'priceAsc' | 'priceDesc'
 type CategoryValue = 'all' | ProductCategory
 
 export default function Produtos() {
+  const [searchParams, setSearchParams] = useSearchParams()
   const [q, setQ] = useState('')
   const [category, setCategory] = useState<'all' | ProductCategory>('all')
   const [sort, setSort] = useState<Sort>('recent')
@@ -20,6 +22,25 @@ export default function Produtos() {
   const [priceMax, setPriceMax] = useState<string>('')
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState<Product | null>(null)
+
+  useEffect(() => {
+    const urlCategory = searchParams.get('categoria')
+    if (urlCategory === 'colheres' || urlCategory === 'tabuas' || urlCategory === 'personalizados') {
+      if (category !== urlCategory) setCategory(urlCategory)
+    }
+  }, [category, searchParams])
+
+  useEffect(() => {
+    const current = searchParams.get('categoria')
+    const desired = category === 'all' ? null : category
+
+    if (desired === current || (desired == null && current == null)) return
+
+    const next = new URLSearchParams(searchParams)
+    if (desired == null) next.delete('categoria')
+    else next.set('categoria', desired)
+    setSearchParams(next, { replace: true })
+  }, [category, searchParams, setSearchParams])
 
   const parsedPriceMin = useMemo(() => {
     const v = Number(priceMin)
